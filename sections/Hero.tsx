@@ -114,7 +114,7 @@ const Hero = () => {
     return (
         <section
             ref={heroRef}
-            className="invisible relative flex min-h-dvh w-full flex-col justify-between gap-8 overflow-hidden bg-foreground px-4 py-6 text-background sm:px-6 sm:py-8 md:h-dvh md:min-h-0 md:gap-0 md:px-12 md:pt-8 md:pb-4"
+            className="invisible  relative flex min-h-dvh w-full flex-col justify-between gap-8 overflow-hidden bg-foreground px-4 py-6 text-background sm:px-6 sm:py-8 md:h-dvh md:min-h-0 md:gap-0 md:px-12 md:pt-8 md:pb-4"
         >
             {/* top header */}
             <div className="flex w-full flex-col items-start justify-between gap-3 md:flex-row md:items-start md:gap-0">
