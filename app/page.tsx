@@ -1,4 +1,6 @@
 
+
+import AIModelsSection from '@/sections/AiModels';
 import { GallerySection } from '@/sections/Gallery';
 import Hero from '@/sections/Hero';
 import React from 'react';
@@ -19,7 +21,8 @@ const page = () => {
         }}
       />
       <section className='relative z-10 min-h-screen bg-foreground'>
-
+        <AIModelsSection />
+        <div className='min-h-[200vh]'></div>
       </section>
     </div>
   );
