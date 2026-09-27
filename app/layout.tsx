@@ -23,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${outfit.variable}  ${header.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background text-foreground font-outfit flex flex-col">
+      <body className="min-h-full flex flex-col">
         <ClientLayout>
           {children}
         </ClientLayout>
