@@ -43,6 +43,24 @@ const models = [
         meta: "open source",
         bg: "bg-emerald-100"
     },
+    {
+        name: "Bard",
+        desc: "Google's conversational AI model with real-time web access for up-to-date information retrieval.",
+        meta: "text & code",
+        bg: "bg-indigo-100"
+    },
+    {
+        name: "Claude 4",
+        desc: "Anthropic's latest model with enhanced reasoning, context retention, and safety features.",
+        meta: "text & code",
+        bg: "bg-yellow-100"
+    },
+    {
+        name: "Gemini 1.5",
+        desc: "Google's highly efficient architecture with a massive context window for large-scale data analysis.",
+        meta: "multimodal",
+        bg: "bg-[skyblue]"
+    }
 ];
 
 export default function App() {
@@ -72,11 +90,7 @@ export default function App() {
                 duration: 1.2,
                 ease: "power3.inOut"
             }, "-=0.7")
-            .fromTo('.editorial-card',
-                { opacity: 0, y: 50 },
-                { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" },
-                "-=0.8"
-            );
+
 
     }, { scope: containerRef });
 
@@ -106,7 +120,7 @@ export default function App() {
                     <text
                         x="50%" y="50%"
                         textAnchor="middle" dominantBaseline="middle"
-                        className="font-sans font-black uppercase text-[180px] text-black"
+                        className="font-header font-black uppercase text-[180px] text-black"
                         fill="none" stroke="currentColor" strokeWidth="4"
                         clipPath="url(#outline-wipe)"
                     >
@@ -117,7 +131,7 @@ export default function App() {
                     <text
                         x="50%" y="50%"
                         textAnchor="middle" dominantBaseline="middle"
-                        className="font-sans font-black uppercase text-[180px] text-background"
+                        className="font-header font-black uppercase text-[180px] text-background"
                         fill="currentColor"
                         clipPath="url(#fill-wipe)"
                     >
@@ -131,10 +145,10 @@ export default function App() {
                 <div className="w-full pt-16">
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
                         {models.map((model, idx) => (
-                            <div key={idx} className="editorial-card flex flex-col border-2 border-background bg-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform duration-300">
+                            <div key={idx} className="editorial-card flex flex-col border-2 border-background bg-foreground sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] ">
                                 {/* Top Massive Block */}
-                                <div className={`relative w-full aspect-[4/3] ${model.bg} border-b-2 border-background flex items-center justify-center overflow-hidden`}>
-                                    <h3 className="font-sans text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black text-center px-4 ">
+                                <div className={`relative w-full aspect-6/3 ${model.bg} border-b-2 border-background flex items-center justify-center overflow-hidden`}>
+                                    <h3 className="font-header text-4xl md:text-5xl lg:text-6xl font-black  tracking-tighter text-black text-center px-4 ">
                                         {model.name}
                                     </h3>
                                 </div>

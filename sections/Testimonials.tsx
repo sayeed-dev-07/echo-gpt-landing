@@ -1,40 +1,57 @@
 'use client'
-import React, { useRef } from 'react';
+import React, { JSX, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import Image from 'next/image';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const cardData = [
+
+interface ICardData {
+    id: number;
+    name: string;
+    role: string;
+    text: string;
+}
+
+interface FeedBackCardProps {
+    data: ICardData;
+}
+
+
+const cardData: ICardData[] = [
     { id: 1, name: "Alice Johnson", role: "Design Lead", text: "I can compare AI models in one place and choose the right one for each design task." },
     { id: 2, name: "Marcus Lee", role: "Product Manager", text: "Switching between models is simple, so I can explore different answers without changing tools." },
     { id: 3, name: "Sarah Connor", role: "System Administrator", text: "The clear layout makes it easy for our team to find a model and get started." },
     { id: 4, name: "David Chen", role: "Software Developer", text: "I spend less time navigating between AI tools and more time getting useful work done." },
 ];
 
-const FeedBackCard = ({ data }) => (
-    <div className="p-8 border-2 border-background bg-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4">
+
+const FeedBackCard: React.FC<FeedBackCardProps> = ({ data }) => (
+    <div className="p-4 sm:p-8  relative z-20 border-2 border-background bg-foreground sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4">
         <p className="text-xl md:text-2xl text-background/90 font-medium leading-relaxed">
             &quot;{data.text}&quot;
         </p>
         <div className="flex flex-col mt-4 border-t-2 border-background/20 pt-4">
-            <span className="font-bold font-header text-2xl text-background  tracking-wider">{data.name}</span>
-            <span className="text-xs text-background/60 ">{data.role}</span>
+            <span className="font-bold font-header text-2xl text-background tracking-wider">{data.name}</span>
+            <span className="text-xs text-background/60">{data.role}</span>
         </div>
     </div>
 );
 
-export default function Testimonials() {
-    const containerRef = useRef(null);
-    const svgRef = useRef(null);
-    const cardsContainerRef = useRef(null);
+
+export default function Testimonials(): JSX.Element {
+    const containerRef = useRef<HTMLElement>(null);
+    const svgRef = useRef<HTMLDivElement>(null);
+    const cardsContainerRef = useRef<HTMLDivElement>(null);
+    const imgRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        // Keep the headline scroll-responsive while cards remain static.
+
         gsap.to('.testimonial-text-svg', {
             scale: 0.35,
-            opacity: 0.2,
+            opacity: 1,
             ease: "none",
             scrollTrigger: {
                 trigger: cardsContainerRef.current,
@@ -44,10 +61,46 @@ export default function Testimonials() {
                 invalidateOnRefresh: true,
             }
         });
+
+
+        if (imgRef.current && containerRef.current) {
+            gsap.fromTo(imgRef.current,
+                { scale: 0 },
+                {
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.5)",
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top -5vh",
+                        toggleActions: "play reverse play reverse",
+                    }
+                }
+            );
+        }
     }, { scope: containerRef });
 
     return (
         <section ref={containerRef} className="relative w-full bg-foreground text-background min-h-[300vh] pb-32">
+
+
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-10">
+
+                <div className="sticky top-0 w-full h-screen flex items-end justify-end p-6 md:p-12 overflow-hidden">
+                    <div
+                        ref={imgRef}
+                        className="relative w-[120px] h-[120px] sm:w-[150px]  sm:h-[150px] md:w-[200px] md:h-[200px] origin-bottom-right will-change-transform"
+                    >
+                        <Image
+                            src={'/review.png'}
+                            alt="Review Image"
+                            fill
+                            className="object-contain drop-shadow-xl"
+                            sizes="(max-width: 768px) 150px, 200px"
+                        />
+                    </div>
+                </div>
+            </div>
 
             {/* Sticky SVG Container */}
             <div ref={svgRef} className="sticky top-[35vh] z-0 flex items-center justify-center w-full overflow-hidden h-[30vh] pointer-events-none origin-center">
@@ -61,7 +114,7 @@ export default function Testimonials() {
                     <text
                         x="50%" y="50%"
                         textAnchor="middle" dominantBaseline="middle"
-                        className="font-sans font-black uppercase"
+                        className="font-header font-black capitalize"
                         fontSize="170"
                         textLength="1100" lengthAdjust="spacingAndGlyphs"
                         fill="black"
@@ -72,8 +125,8 @@ export default function Testimonials() {
             </div>
 
             {/* Testimonials Cards Grid */}
-            <div ref={cardsContainerRef} className="relative z-10 w-full mt-[100vh] px-6 sm:px-12 md:px-20">
-                <div className="w-full flex flex-col gap-24 md:gap-32 pt-16 ">
+            <div ref={cardsContainerRef} className="relative z-10 w-full mt-[100vh] px-4 sm:px-6 md:px-12">
+                <div className="w-full flex flex-col gap-24 md:gap-32 pt-16">
                     {cardData.map((item, index) => {
                         let alignment = 'md:self-start';
                         if (index % 3 === 1) alignment = 'md:self-end';

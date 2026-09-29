@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EchoGPT Landing Page
 
-## Getting Started
+## Project overview
 
-First, run the development server:
+EchoGPT is a responsive, single-page landing page concept for an AI platform. It introduces the brand, showcases a rotating image gallery and a selection of AI models, and includes testimonials, an FAQ accordion, a call to action, and footer navigation.
+
+## Setup instructions
+
+### Requirements
+
+- Node.js compatible with the installed Next.js version
+- npm
+
+### Install and run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site. Edit files under `sections/` to update the landing page sections; the page composition is in `app/page.tsx`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Other commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint   # Run ESLint
+npm run build  # Create a production build
+npm run start  # Serve the production build
+```
 
-## Learn More
+Run `npm run build` before `npm run start`.
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS 4
+- GSAP, including ScrollTrigger, SplitText, and `@gsap/react`, for animations
+- Lenis for smooth scrolling
+- Lucide React for icons
+- `next/font` with Outfit and Righteous fonts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Assumptions
 
-## Deploy on Vercel
+- This is a visual landing page prototype. Model descriptions, testimonials, FAQ answers, and footer links are static content in the source code.
+- The page does not include account management, model APIs, billing, contact submissions, or a content management system.
+- The hero and call-to-action links point to the EchoGPT web app at `https://echo-gpt-six.vercel.app/`.
+- Gallery artwork is loaded from external Pinterest image URLs, so those images depend on third-party availability and network access.
+- Footer links currently use placeholder `#` destinations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Additional features implemented
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Intro animation that plays once per browser session when session storage is available
+- Responsive hero typography that adjusts to its container size
+- GSAP entrance, scroll-triggered, and text-splitting animations
+- Three continuously moving gallery rows
+- Smooth scrolling with Lenis, including a scroll-dimension refresh after FAQ items expand or collapse
+- Animated FAQ accordion with synchronized ScrollTrigger refresh
+- Responsive model, testimonial, call-to-action, and footer layouts
