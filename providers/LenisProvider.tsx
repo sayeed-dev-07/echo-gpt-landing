@@ -28,6 +28,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
         <ReactLenis
             root
             ref={lenisRef}
+            autoRaf={false}
             options={{ lerp: 0.1, duration: 1.2 }}
         >
             {children}
