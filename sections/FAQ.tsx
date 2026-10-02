@@ -100,6 +100,7 @@ const FaqCard: React.FC<FaqCardProps> = ({ data }) => {
                 overwrite: true,
                 onComplete: () => {
                     ScrollTrigger.refresh();
+                    lenis?.resize();
                 }
             });
             gsap.to(iconRef.current, {
@@ -116,6 +117,7 @@ const FaqCard: React.FC<FaqCardProps> = ({ data }) => {
                 overwrite: true,
                 onComplete: () => {
                     ScrollTrigger.refresh();
+                    lenis?.resize();
                 }
             });
             gsap.to(iconRef.current, {
