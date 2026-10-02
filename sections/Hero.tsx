@@ -48,6 +48,7 @@ const Hero = () => {
         window.addEventListener('resize', fitHugeText);
 
         return () => {
+            if (wrap) ro.unobserve(wrap);
             ro.disconnect();
             window.removeEventListener('resize', fitHugeText);
         };

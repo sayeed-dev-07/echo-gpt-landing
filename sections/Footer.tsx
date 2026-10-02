@@ -89,6 +89,7 @@ export default function CtaAndFooter(): JSX.Element {
         window.addEventListener('resize', fitHugeText);
 
         return () => {
+            if (wrap) ro.unobserve(wrap);
             ro.disconnect();
             window.removeEventListener('resize', fitHugeText);
         };

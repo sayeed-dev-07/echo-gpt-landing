@@ -90,6 +90,7 @@ const FaqCard: React.FC<FaqCardProps> = ({ data }) => {
     // Expand / Collapse Animations
     // contextSafe handles returning a clean function, so we cast it to standard void function
     const toggleCard = contextSafe(() => {
+        lenis?.resize();
         if (isOpen.current) {
             // Close
             gsap.to(contentRef.current, {
@@ -98,7 +99,6 @@ const FaqCard: React.FC<FaqCardProps> = ({ data }) => {
                 ease: "power3.inOut",
                 overwrite: true,
                 onComplete: () => {
-                    lenis?.resize();
                     ScrollTrigger.refresh();
                 }
             });
@@ -115,7 +115,6 @@ const FaqCard: React.FC<FaqCardProps> = ({ data }) => {
                 ease: "power3.inOut",
                 overwrite: true,
                 onComplete: () => {
-                    lenis?.resize();
                     ScrollTrigger.refresh();
                 }
             });
